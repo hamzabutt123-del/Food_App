@@ -5,6 +5,7 @@ const UserProgressContext = createContext({
   showCart: () => {},
   hideCart: () => {},
   showCheckout: () => {},
+   hideCheckout: () => {},
 });                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     
 
 export function UserProgressProvider({ children }) {
@@ -27,6 +28,7 @@ export function UserProgressProvider({ children }) {
     showCart,
     hideCart,
     showCheckout,
+     hideCheckout: () => setProgress(""),
   };
 
   return (

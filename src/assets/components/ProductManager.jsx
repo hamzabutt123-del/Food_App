@@ -1,16 +1,20 @@
 import { useState } from "react";
 import Button from "./UI/Button";
 import ProductFormModal from "./ProductFormModal";
+import { useNavigate } from "react-router-dom";
 
 export default function ProductManager() {
   const [products, setProducts] = useState([]);
   const [modalOpen, setModalOpen] = useState(false);
   const [editingProduct, setEditingProduct] = useState(null);
-
+  const navigate = useNavigate();
+  console.log(navigate, "navigate")
   function handleCreateProduct(product) {
     if (editingProduct) {
       setProducts((prev) =>
-        prev.map((p) => (p.id === editingProduct.id ? { ...product, id: p.id } : p))
+        prev.map((p) =>
+          p.id === editingProduct.id ? { ...product, id: p.id } : p
+        )
       );
     } else {
       setProducts((prev) => [...prev, { ...product, id: Date.now() }]);
@@ -26,12 +30,20 @@ export default function ProductManager() {
     <div className="page">
       <h2>Manage Products</h2>
       <Button onClick={() => setModalOpen(true)}>Create Product</Button>
+      <Button onClick={() => navigate("/")}>Home</Button>
       <ul>
         {products.map((p) => (
           <li key={p.id}>
             <strong>{p.name}</strong> - ${p.price}
             <p>{p.description}</p>
-            <Button onClick={() => { setModalOpen(true); setEditingProduct(p); }}>Edit</Button>
+            <Button
+              onClick={() => {
+                setModalOpen(true);
+                setEditingProduct(p);
+              }}
+            >
+              Edit
+            </Button>
             <Button onClick={() => handleDeleteProduct(p.id)}>Delete</Button>
           </li>
         ))}
@@ -39,7 +51,10 @@ export default function ProductManager() {
       {modalOpen && (
         <ProductFormModal
           initialData={editingProduct}
-          onClose={() => { setModalOpen(false); setEditingProduct(null); }}
+          onClose={() => {
+            setModalOpen(false);
+            setEditingProduct(null);
+          }}
           onSubmit={handleCreateProduct}
         />
       )}

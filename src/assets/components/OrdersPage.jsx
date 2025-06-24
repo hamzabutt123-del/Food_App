@@ -1,9 +1,10 @@
 import { useContext } from "react";
 import CartContext from "../store/CartContext";
-
+import { useNavigate } from "react-router-dom";
+import Button from "./UI/Button";
 export default function OrdersPage() {
   const cartCtx = useContext(CartContext);
-
+const navigate = useNavigate();
   return (
     <div className="page">
       <h2>Your Orders</h2>
@@ -18,6 +19,7 @@ export default function OrdersPage() {
           ))
         )}
       </ul>
+      <Button onClick= {()=> navigate("../")}>Home</Button>
     </div>
   );
 }

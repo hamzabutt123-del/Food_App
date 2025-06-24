@@ -3,6 +3,8 @@ import CartContext from "../store/CartContext.jsx";
 import { currencyFormatter } from "../../../util/formatting";
 import CartItem from "./CartItem.jsx";
 import UserProgressContext from "../store/UserProgressContext.jsx";
+import { IoCloseOutline } from "react-icons/io5";
+import Button from "./UI/Button.jsx";
 
 export default function Checkout() {
   const cartCtx = useContext(CartContext);
@@ -23,7 +25,7 @@ export default function Checkout() {
     setTimeout(() => {
       userProgressCtx.hideCheckout();
       setOrderConfirmed(false);
-    }, 1000);
+    }, 5000);
   }
 
   return (
@@ -33,7 +35,16 @@ export default function Checkout() {
           <p className="confirmation-message"> Order Confirmed! Thank you!</p>
         ) : (
           <>
-            <h2>Checkout</h2>
+            <div className="styling">
+              <h2>Checkout</h2>
+              <button
+                onClick={userProgressCtx.hideCheckout}
+                className="close-button"
+                aria-label="Close"
+              >
+                <IoCloseOutline size={28}/>
+              </button>
+            </div>
             <ul>
               {cartCtx.items.map((item) => (
                 <CartItem
@@ -46,9 +57,11 @@ export default function Checkout() {
                 />
               ))}
             </ul>
-             <p>Total: <strong>{currencyFormatter.format(cartTotal)}</strong></p>
+            <p>
+              Total: <strong>{currencyFormatter.format(cartTotal)}</strong>
+            </p>
             <div className="modal-actions">
-              <button onClick={handleConfirmOrder}>Confirm Order</button>
+              <Button onClick={handleConfirmOrder}>Confirm Order</Button>
             </div>
           </>
         )}

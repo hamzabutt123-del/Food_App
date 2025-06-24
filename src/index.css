@@ -307,7 +307,6 @@ h1 {
 .modal-actions {
   margin-top: 1rem;
   display: flex;
-  justify-content: flex-end;
   gap: 1rem;
 }
 
@@ -316,9 +315,48 @@ h1 {
   font-size: 1.2rem;
 }
 .confirmation-message {
-  font-size: 1.5rem;
-  color: green;
-  text-align: center;
-  padding: 2rem;
+  animation: fadeOut 1s ease-in-out 4s forwards;
+}
+@keyframes fadeOut {
+  to {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+.form-modal{
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-left: 100px;
+  margin-right: 100px;
+}
+
+.styling {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.name{
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 10px;
+  border-radius: 50px;
+}
+.price{
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 10px;
+  border-radius: 50px;
+}
+.description{
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 10px;
+  border-radius: 50px;
+}
+.close-button{   
+   border: "none";
+   cursor: "pointer";
+   padding: 0;
 }
 
