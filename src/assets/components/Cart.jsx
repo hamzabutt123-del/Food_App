@@ -21,7 +21,7 @@ export default function Cart() {
   function handleGoToCheckout() {
     userProgressCtx.showCheckout();
   }
-console.log(cartCtx,"cartCtx");
+  console.log(cartCtx, "cartCtx");
 
   return (
     <div className="modal-backdrop">

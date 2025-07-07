@@ -3,10 +3,9 @@ import logoImg from "../../assets/logo.jpg";
 import Button from "./UI/Button";
 import CartContext from "../store/CartContext";
 import UserProgressContext from "../store/UserProgressContext";
-import { useNavigate } from "react-router-dom";
+
 export default function Header() {
   const cartCtx = useContext(CartContext);
-   const navigate = useNavigate();
   const userProgressCtx = useContext(UserProgressContext);
 
   const totalCartItems = cartCtx.items.reduce((total, item) => {
@@ -26,12 +25,6 @@ export default function Header() {
       <nav>
         <Button textOnly onClick={handleShowCart}>
           Cart ({totalCartItems})
-        </Button>
-        <Button textOnly onClick={() => navigate("/products")}>
-          Manage Products
-        </Button>
-        <Button textOnly onClick={() => navigate("/orders")}>
-          View Orders
         </Button>
       </nav>
     </header>

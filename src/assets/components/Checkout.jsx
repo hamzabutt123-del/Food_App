@@ -42,7 +42,7 @@ export default function Checkout() {
                 className="close-button"
                 aria-label="Close"
               >
-                <IoCloseOutline size={28}/>
+                <IoCloseOutline size={28} />
               </button>
             </div>
             <ul>
