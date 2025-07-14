@@ -629,7 +629,7 @@ section {
 
 .category-button-container {
   display: flex;
-  gap: 40px; 
+  gap: 10px; 
 }
 
 .category-button {
