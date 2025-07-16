@@ -1,4 +1,5 @@
 import { useContext } from "react";
+import { Link } from 'react-router-dom';
 import logoImg from "../../assets/logo.jpg";
 import Button from "./UI/Button";
 import CartContext from "../store/CartContext";
@@ -23,6 +24,9 @@ export default function Header() {
         <h1>ReactFood</h1>
       </div>
       <nav>
+        <Link to="/admin">
+          <Button>Admin Panel</Button>
+        </Link>
         <Button textOnly onClick={handleShowCart}>
           Cart ({totalCartItems})
         </Button>
