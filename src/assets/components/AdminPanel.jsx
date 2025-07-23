@@ -2,11 +2,8 @@ import { useState, useContext } from "react";
 import ProductsContext from "../store/ProductContext";
 import Button from "./UI/Button";
 import { useNavigate } from "react-router-dom";
-
 export default function AdminPanel() {
   const productsCtx = useContext(ProductsContext);
-  const [isAdmin, setIsAdmin] = useState(false);
-  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     id: "",
     name: "",
@@ -64,21 +61,14 @@ export default function AdminPanel() {
     productsCtx.deleteProduct(id);
   };
 
-  if (!isAdmin) {
-    return (
-      <div className="admin-login">
-        <h2>Admin Panel</h2>
-        <Button onClick={() => setIsAdmin(true)}>Login as Admin</Button>
-      </div>
-    );
-  }
-  const handleLogout = () => {
+  const navigate = useNavigate();
+
+  const handleBackHome = () => {
     navigate("/");
   };
   return (
     <div className="admin-panel">
       <h2>Product Management</h2>
-      <Button onClick={handleLogout}>Back to Main</Button>
 
       <form onSubmit={handleSubmit} className="product-form">
         <div className="form-group">
@@ -143,6 +133,7 @@ export default function AdminPanel() {
         <div className="form-actions">
           <Button type="submit">{editingId ? "Update" : "Add"} Product</Button>
           {editingId && <Button onClick={resetForm}>Cancel</Button>}
+          <Button onClick={handleBackHome}>Back to Home</Button>
         </div>
       </form>
 

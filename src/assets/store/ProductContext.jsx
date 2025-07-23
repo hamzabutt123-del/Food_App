@@ -9,6 +9,9 @@ const initialProducts = {
 
 const ProductsContext = createContext({
   products: initialProducts,
+  isAdmin: false,
+  login: () => {},
+  logout: () => {},
   addProduct: (product) => {},
   updateProduct: (id, updatedProduct) => {},
   deleteProduct: (id) => {},
@@ -16,6 +19,15 @@ const ProductsContext = createContext({
 
 export function ProductsContextProvider({ children }) {
   const [products, setProducts] = useState(initialProducts);
+  const [isAdmin, setIsAdmin] = useState(false);
+
+  function login() {
+    setIsAdmin(true);
+  }
+
+  function logout() {
+    setIsAdmin(false);
+  }
 
   function addProduct(product) {
     setProducts((prevProducts) => {
@@ -62,6 +74,9 @@ export function ProductsContextProvider({ children }) {
 
   const contextValue = {
     products,
+    isAdmin,
+    login,
+    logout,
     addProduct,
     updateProduct,
     deleteProduct,
